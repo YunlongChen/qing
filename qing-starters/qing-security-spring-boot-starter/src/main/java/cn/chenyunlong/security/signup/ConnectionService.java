@@ -54,7 +54,7 @@ public interface ConnectionService {
     /**
      * 根据传入的参数更新第三方授权登录的用户信息, 包括 accessToken 信息,
      *
-     * @param authUser       {@link AuthUser}
+     * @param authUser {@link AuthUser}
      * @param connectionData 第三方授权登录的用户信息
      * @throws UpdateConnectionException 更新异常
      */
@@ -63,8 +63,8 @@ public interface ConnectionService {
     /**
      * 第三方授权登录信息{@link AuthUser}绑定到本地账号{@link UserDetails}, 且添加第三方授权登录信息到 user_connection 与 auth_token
      *
-     * @param principal  本地用户数据
-     * @param authUser   第三方用户信息
+     * @param principal 本地用户数据
+     * @param authUser 第三方用户信息
      * @param providerId 第三方服务商 Id
      */
     void binding(UserDetails principal, AuthUser authUser, String providerId);
@@ -72,8 +72,8 @@ public interface ConnectionService {
     /**
      * 解除绑定(第三方)
      *
-     * @param userId         用户 Id
-     * @param providerId     第三方服务商 Id
+     * @param userId 用户 Id
+     * @param providerId 第三方服务商 Id
      * @param providerUserId 第三方用户 Id
      */
     void unbinding(String userId, String providerId, String providerUserId);
@@ -86,8 +86,7 @@ public interface ConnectionService {
      * @return connection data list
      */
     @Nullable
-    List<ConnectionData> findConnectionByProviderIdAndProviderUserId(AuthProvider provider,
-                                                                     String providerUserId);
+    List<ConnectionData> findConnectionByProviderIdAndProviderUserId(AuthProvider provider, String providerUserId);
 
     /**
      * 获取当前账号下所有绑定的第三方账号接口.<br>

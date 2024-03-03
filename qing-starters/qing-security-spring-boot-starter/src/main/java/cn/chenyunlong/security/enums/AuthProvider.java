@@ -2,6 +2,7 @@ package cn.chenyunlong.security.enums;
 
 import lombok.Getter;
 
+@Getter
 public enum AuthProvider {
 
 
@@ -25,7 +26,6 @@ public enum AuthProvider {
     AUTHING("authing");
 
 
-    @Getter
     private final String providerId;
 
     AuthProvider(String providerId) {
