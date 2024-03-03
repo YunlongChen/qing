@@ -13,7 +13,7 @@ onMounted(() => {
 
   const accessToken = router.currentRoute.value.query.accessToken;
   if (accessToken === null) {
-    alert("登录失败");
+    console.log("登录失败，token为空");
     return;
   }
 
@@ -25,8 +25,7 @@ onMounted(() => {
   console.log("state", state);
   const userInfoSto = userInfoStore();
   userInfoSto.login(accessToken);
-  alert("登录成功:当前用户类型是否是临时用户：" + state.toString());
-  console.debug("本地存储信息", userInfoSto);
+  console.log("登录成功:当前用户类型是否是临时用户：" + state.toString());
   router.push("/profile");
 });
 </script>
