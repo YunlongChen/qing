@@ -58,7 +58,6 @@ public class AuthingProvider implements AuthenticationProvider {
         AuthingLoginRequest loginRequest = loginToken.getLoginRequest();
         log.info("【Authing】通过Authing登录：流程开始");
         log.info("【Authing】code:{},state:{}", loginRequest.getCode(), loginRequest.getState());
-        authentication.setAuthenticated(true);
         // 1.1设置初始化参数
         AuthenticationClient authenticationClient = getAuthenticationClient();
         //1.3 通过code 获取OIDCTokenResponse
@@ -124,6 +123,7 @@ public class AuthingProvider implements AuthenticationProvider {
         if (userDetails == null) {
             throw new NotConnectedException(provider.getProviderId());
         }
+        authentication.setAuthenticated(true);
         // 7 创建成功认证 token 并返回
         Auth2AuthenticationToken auth2AuthenticationToken = new Auth2AuthenticationToken(userDetails, userDetails.getAuthorities(), provider.getProviderId());
         auth2AuthenticationToken.setDetails(loginToken.getDetails());
