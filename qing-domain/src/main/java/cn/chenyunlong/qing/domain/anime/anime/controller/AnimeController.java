@@ -39,7 +39,9 @@ public class AnimeController {
 
     @Operation(summary = "创建动漫信息")
     @PostMapping
-    public JsonResult<Long> createAnime(@RequestBody AnimeCreateRequest request) {
+    public JsonResult<Long> createAnime(
+        @RequestBody
+        AnimeCreateRequest request) {
         AnimeCreator creator = AnimeMapper.INSTANCE.request2Dto(request);
         return JsonResult.success(animeService.createAnime(creator));
     }

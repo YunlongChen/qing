@@ -91,7 +91,7 @@ public class AnimeServiceImpl implements IAnimeService {
     @Override
     public AnimeVO findById(Long id) {
         Optional<Anime> anime = animeRepository.findById(id);
-        return new AnimeVO(anime.orElseThrow(() -> new BusinessException(CodeEnum.NotFindError)));
+        return anime.map(AnimeMapper.INSTANCE::entityToVo).orElseThrow(() -> new BusinessException(CodeEnum.NotFindError));
     }
 
     /**
@@ -101,6 +101,6 @@ public class AnimeServiceImpl implements IAnimeService {
     public Page<AnimeVO> findByPage(PageRequestWrapper<AnimeQuery> query) {
         PageRequest pageRequest =
             PageRequest.of(query.getPage(), query.getPageSize(), Sort.Direction.DESC, "createdAt");
-        return animeRepository.findAll(pageRequest).map(AnimeVO::new);
+        return animeRepository.findAll(pageRequest).map(AnimeMapper.INSTANCE::entityToVo);
     }
 }
