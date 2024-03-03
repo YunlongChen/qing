@@ -38,9 +38,9 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Long register(UserCreator creator) {
         Optional<QingUser> user = EntityOperations.doCreate(userRepository)
-            .create(() -> UserMapper.INSTANCE.dtoToEntity(creator))
-            .update(QingUser::init)
-            .execute();
+                                      .create(() -> UserMapper.INSTANCE.dtoToEntity(creator))
+                                      .update(QingUser::init)
+                                      .execute();
         return user.isPresent() ? user.get().getId() : 0;
     }
 
@@ -99,5 +99,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Optional<QingUser> findByUsername(String username) {
         return Optional.ofNullable(userRepository.findByUsername(username));
+    }
+
+    @Override
+    public Optional<QingUser> loadUserByUserId(String userId) {
+        return Optional.ofNullable(userRepository.findUserByUserId(userId));
     }
 }
